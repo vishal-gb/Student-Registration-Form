@@ -1,12 +1,7 @@
 <?php
 // Initialize the session
 session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
+
 // database connection
 include('config.php');
 
@@ -22,9 +17,6 @@ if(isset($_POST['submit'])){
 	$Department = $_POST['Department'];
 	$Batch = $_POST['Batch'];
 	$Roll_No = $_POST['Roll_No'];
-
-        $_SESSION['Roll_No'] = $_POST['Roll_No'];
-
 	$A_U_NO = $_POST['A_U_NO'];
 	$Section = $_POST['Section'];
 	$Gender = $_POST['Gender'];
@@ -134,6 +126,8 @@ if(isset($_POST['submit'])){
 	$guardian1_officeaddress = $_POST['guardian1_officeaddress'];
 	$guardian2_officeaddress = $_POST['guardian2_officeaddress'];
 	
+        $_SESSION['Roll_No'] = $_POST['Roll_No'];
+
         $studentphoto = $_FILES['studentPhoto']['name'];
         $fatherphoto = $_FILES['fatherPhoto']['name'];
         $motherphoto = $_FILES['motherPhoto']['name'];
@@ -167,7 +161,7 @@ if(isset($_POST['submit'])){
         $extsension = explode('.',$_FILES['passC']['name']);
         $file_ext9=strtolower(array_pop($extsension));
 
-        $insert_data = "INSERT INTO student_data(Initial, Name, Course, Department, Batch, Roll_No, A_U_NO, Section, Gender, Food, Blood_Group, Aadhaar_No, Student_MailID, Date_of_Birth, Caste, Community, Community_Others,Parent_Annual_Income,Religion,Nationality ,Mother_Tongue, Member_Of, Date_Of_Admission, Admission_Allotment, Sports_Admission1, Sports_Admission2, Overall_Rank, Community_Rank,Sports_Admission3, Game_Name, Medium_Of_Instruction, Medium_Of_Instruction_Others, Country_Name, passport_number, passport_expiry, visa_number, type_of_visa, visa_expiry,tenth_school, tenth_board, tenth_reg, tenth_yearofpassing, tenth_markpercent, twelveth_school, twelveth_board, twelveth_reg, twelveth_yearofpassing, twelveth_markpercent,max_mathmarks, obtained_mathmarks, percent_mathmarks, max_physicsmarks, obtained_physicsmarks, percent_physicsmarks, max_chemistrymarks, obtained_chemistrymarks, percent_chemistrymarks, max_totalmarks,obtained_totalmarks, percent_totalmarks, father_name, mother_name, father_qualification, mother_qualification, father_occupation, mother_occupation,father_addressofcompany, mother_addressofcompany, father_designation, mother_designation, father_mail, mother_mail, father_countrycode, mother_countrycode,father_stdcode, mother_stdcode, father_landline, mother_landline, father_moblie, mother_mobile, residence_doorno, permanent_doorno,residence_streetname, permanent_streetname, residence_area, permanent_area, residence_city, permanent_city, residence_district, permanent_district,residence_country, permanent_country, residence_state, permanent_state, residence_pincode, permanent_pincode, dayscholar_area, dayscholar_boardingpoint,guardian1_name, guardian2_name, guardian1_occupation, guardian2_occupation, guardian1_age, guardian2_age, guardian1_dob, guardian2_dob,guardian1_landline, guardian2_landline, guardian1_mobile, guardian2_mobile, guardian1_homeaddress, guardian2_homeaddress, guardian1_officeaddress, guardian2_officeaddress,student_photo, father_photo, mother_photo, aadhaar_photo, community_certificate, tenth_certificate, twelveth_certificate) VALUES ('$Initial','$Name','$Course','$Department','$Batch','$Roll_No','$A_U_NO','$Section','$Gender','$Food','$Blood_Group','$Aadhaar_No','$Student_Mail_ID','$Date_of_Birth','$Caste','$Community','$Community_Others','$Parent_Annual_Income','$Religion','$Nationality','$Mother_Tongue','$Member_Of','$Date_Of_Admission','$Admission_Allotment','$Sports_Admission1','$Sports_Admission2','$Overall_Rank','$Community_Rank','$Sports_Admission3','$Game_Name','$Medium_Of_Instruction','$CasteMedium_Of_Instruction_Others','$Country_Name','$passport_number','$passport_expiry','$visa_number','$type_of_visa','$visa_expiry','$tenth_school','$tenth_board','$tenth_reg','$tenth_yearofpassing','$tenth_markpercent','$twelveth_school','$twelveth_board','$twelveth_reg','$twelveth_yearofpassing','$twelveth_markpercent','$max_mathmarks','$obtained_mathmarks','$percent_mathmarks','$max_physicsmarks','$obtained_physicsmarks','$percent_physicsmarks','$max_chemistrymarks','$obtained_chemistrymarks','$percent_chemistrymarks','$max_totalmarks','$obtained_totalmarks','$percent_totalmarks','$father_name','$mother_name','$father_qualification','$mother_qualification','$father_occupation','$mother_occupation','$father_addressofcompany','$mother_addressofcompany','$father_designation','$mother_designation','$father_mail','$mother_mail','$father_countrycode','$mother_countrycode','$father_stdcode','$mother_stdcode','$father_landline','$mother_landline','$father_moblie','$mother_mobile','$residence_doorno','$permanent_doorno','$residence_streetname','$permanent_streetname','$residence_area','$permanent_area','$residence_city','$permanent_city','$residence_district','$permanent_district','$residence_country','$permanent_country','$residence_state','$permanent_state','$residence_pincode','$permanent_pincode','$dayscholar_area','$dayscholar_boardingpoint','$guardian1_name','$guardian2_name','$guardian1_occupation','$guardian2_occupation','$guardian1_age','$guardian2_age','$guardian1_dob','$guardian2_dob','$guardian1_landline','$guardian2_landline','$guardian1_mobile','$guardian2_mobile','$guardian1_homeaddress','$guardian2_homeaddress','$guardian1_officeaddress','$guardian2_officeaddress','$studentphoto','$fatherphoto','$motherphoto','$aadhaarphoto','$communitycert','$tenthcert','$twelcert','$allorder','$passportphoto')";
+        $insert_data = "INSERT INTO student_data VALUES ('$Initial','$Name','$Course','$Department','$Batch','$Roll_No','$A_U_NO','$Section','$Gender','$Food','$Blood_Group','$Aadhaar_No','$Student_Mail_ID','$Date_of_Birth','$Caste','$Community','$Community_Others','$Parent_Annual_Income','$Religion','$Nationality','$Mother_Tongue','$Member_Of','$Date_Of_Admission','$Admission_Allotment','$Sports_Admission1','$Sports_Admission2','$Overall_Rank','$Community_Rank','$Sports_Admission3','$Game_Name','$Medium_Of_Instruction','$CasteMedium_Of_Instruction_Others','$Country_Name','$passport_number','$passport_expiry','$visa_number','$type_of_visa','$visa_expiry','$tenth_school','$tenth_board','$tenth_reg','$tenth_yearofpassing','$tenth_markpercent','$twelveth_school','$twelveth_board','$twelveth_reg','$twelveth_yearofpassing','$twelveth_markpercent','$max_mathmarks','$obtained_mathmarks','$percent_mathmarks','$max_physicsmarks','$obtained_physicsmarks','$percent_physicsmarks','$max_chemistrymarks','$obtained_chemistrymarks','$percent_chemistrymarks','$max_totalmarks','$obtained_totalmarks','$percent_totalmarks','$father_name','$mother_name','$father_qualification','$mother_qualification','$father_occupation','$mother_occupation','$father_addressofcompany','$mother_addressofcompany','$father_designation','$mother_designation','$father_mail','$mother_mail','$father_countrycode','$mother_countrycode','$father_stdcode','$mother_stdcode','$father_landline','$mother_landline','$father_moblie','$mother_mobile','$residence_doorno','$permanent_doorno','$residence_streetname','$permanent_streetname','$residence_area','$permanent_area','$residence_city','$permanent_city','$residence_district','$permanent_district','$residence_country','$permanent_country','$residence_state','$permanent_state','$residence_pincode','$permanent_pincode','$dayscholar_area','$dayscholar_boardingpoint','$guardian1_name','$guardian2_name','$guardian1_occupation','$guardian2_occupation','$guardian1_age','$guardian2_age','$guardian1_dob','$guardian2_dob','$guardian1_landline','$guardian2_landline','$guardian1_mobile','$guardian2_mobile','$guardian1_homeaddress','$guardian2_homeaddress','$guardian1_officeaddress','$guardian2_officeaddress','$studentphoto','$fatherphoto','$motherphoto','$aadharphoto','$communitycert','$tenthcert','$twelcert','$allorder','$passportphoto')";
   	$run_data = mysqli_query($con,$insert_data);
 
   	if($run_data){
@@ -177,35 +171,36 @@ if(isset($_POST['submit'])){
   	}
 
           move_uploaded_file($_FILES['studentPhoto']['tmp_name'], "./imageassets/$studentphoto");
-          rename ("./imageassets/".$studentphoto , "./imageassets/".$rollno."-studentphoto".".".$file_ext1);
+          rename ("./imageassets/".$studentphoto , "./imageassets/".$Roll_No."-studentphoto".".".$file_ext1);
           
           move_uploaded_file($_FILES['fatherPhoto']['tmp_name'], "./imageassets/$fatherphoto");
-          rename ("./imageassets/".$fatherphoto , "./imageassets/".$rollno."-fatherphoto".".".$file_ext2);
+          rename ("./imageassets/".$fatherphoto , "./imageassets/".$Roll_No."-fatherphoto".".".$file_ext2);
           
           move_uploaded_file($_FILES['motherPhoto']['tmp_name'], "./imageassets/$motherphoto");
-          rename ("./imageassets/".$motherphoto , "./imageassets/".$rollno."-motherphoto".".".$file_ext3);
+          rename ("./imageassets/".$motherphoto , "./imageassets/".$Roll_No."-motherphoto".".".$file_ext3);
           
           move_uploaded_file($_FILES['aadhaarPhoto']['tmp_name'], "./imageassets/$aadharphoto");
-          rename ("./imageassets/".$aadharphoto , "./imageassets/".$rollno."-aadharphoto".".".$file_ext4);
+          rename ("./imageassets/".$aadharphoto , "./imageassets/".$Roll_No."-aadharphoto".".".$file_ext4);
           
           move_uploaded_file($_FILES['cc']['tmp_name'], "./imageassets/$communitycert");
-          rename ("./imageassets/".$communitycert , "./imageassets/".$rollno."-communitycert".".".$file_ext5);
+          rename ("./imageassets/".$communitycert , "./imageassets/".$Roll_No."-communitycert".".".$file_ext5);
           
           move_uploaded_file($_FILES['tenC']['tmp_name'], "./imageassets/$tenthcert");
-          rename ("./imageassets/".$tenthcert , "./imageassets/".$rollno."-tenthcert".".".$file_ext6);
+          rename ("./imageassets/".$tenthcert , "./imageassets/".$Roll_No."-tenthcert".".".$file_ext6);
           
           move_uploaded_file($_FILES['tweC']['tmp_name'], "./imageassets/$twelcert");
-          rename ("./imageassets/".$twelcert , "./imageassets/".$rollno."-twelcert".".".$file_ext7);
+          rename ("./imageassets/".$twelcert , "./imageassets/".$Roll_No."-twelcert".".".$file_ext7);
           
           move_uploaded_file($_FILES['allOd']['tmp_name'], "./imageassets/$allorder");
-          rename ("./imageassets/".$allorder , "./imageassets/".$rollno."-allorder".".".$file_ext8);
+          rename ("./imageassets/".$allorder , "./imageassets/".$Roll_No."-allorder".".".$file_ext8);
           
           move_uploaded_file($_FILES['passC']['tmp_name'], "./imageassets/$passportphoto");
-          rename ("./imageassets/".$passportphoto , "./imageassets/".$rollno."-passportphoto".".".$file_ext9);
+          rename ("./imageassets/".$passportphoto , "./imageassets/".$Roll_No."-passportphoto".".".$file_ext9);
           
           echo "New record created successfully";
           
           header("Location: ./viewpdf.php");
+
 
 }
 

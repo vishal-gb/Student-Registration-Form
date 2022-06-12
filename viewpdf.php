@@ -1,9 +1,9 @@
 <?php
-    require ('dbconnect.php');
+    require ('config.php');
     session_start();
 
 
-    $roll = $_SESSION['rollno'];
+    $roll = $_SESSION['Roll_No'];
 
 ?>
 
@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="row">
-                <form action="pdfgenerate.php" method="post">
+                <form action="pdfgenerate1.php" method="post">
                     <label>Click the below button to generate your PDF.</label><br>
                     <label style="background-color: yellow;">Kindly 
                     <label style="color: red;">download</label> 
